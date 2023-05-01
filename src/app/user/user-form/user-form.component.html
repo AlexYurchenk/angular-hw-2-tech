@@ -1,0 +1,62 @@
+<form class="form" [formGroup]="form" (ngSubmit)="handleSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Enter your name</mat-label>
+    <input
+      type="text"
+      matInput
+      placeholder="Alex"
+      formControlName="firstName"
+      required
+    />
+    <mat-error *ngIf="form.controls['firstName'].errors">{{
+      getFirsNameErrorMessage()
+    }}</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Enter your last name</mat-label>
+    <input
+      type="text"
+      matInput
+      placeholder="Yurchenko"
+      formControlName="lastName"
+      required
+    />
+    <mat-error *ngIf="form.controls['lastName'].errors">{{
+      getLastNameErrorMessage()
+    }}</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Enter your email</mat-label>
+    <input
+      type="email"
+      matInput
+      placeholder="pat@example.com"
+      formControlName="email"
+      required
+    />
+    <mat-error *ngIf="form.controls['email'].errors">{{
+      getEmailErrorMessage()
+    }}</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Enter your phone</mat-label>
+    <input
+      type="phone"
+      matInput
+      placeholder="+380** ** ** ***"
+      formControlName="phone"
+      required
+    />
+    <mat-error *ngIf="form.controls['phone'].errors">{{
+      getPhoneErrorMessage()
+    }}</mat-error>
+  </mat-form-field>
+  <button
+    [disabled]="form.invalid"
+    mat-raised-button
+    color="primary"
+    type="submit"
+  >
+    Create
+  </button>
+</form>

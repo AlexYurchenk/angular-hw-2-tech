@@ -1,0 +1,5 @@
+<ul class="userList">
+  <li class="userList__item" *ngFor="let user of users$ | async; let i = index">
+    <app-user-card [user]="user"></app-user-card>
+  </li>
+</ul>
