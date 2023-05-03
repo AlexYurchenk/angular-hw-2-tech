@@ -1,0 +1,42 @@
+<mat-toolbar>
+  <mat-checkbox
+    (change)="handleSelectAll()"
+    [checked]="isAllUsersSelected"
+    color="primary"
+    >Select All</mat-checkbox
+  >
+  <button
+    (click)="handleDelete()"
+    style="background-color: transparent"
+    mat-flat-button
+  >
+    Delete
+  </button>
+  <button
+    style="background-color: transparent"
+    mat-flat-button
+    [matMenuTriggerFor]="menu"
+  >
+    Sorting order
+  </button>
+  <mat-menu #menu="matMenu">
+    <button (click)="handleNewestOrderSort()" mat-menu-item>
+      Show the newest
+    </button>
+    <button (click)="handleAlphabeticalOrderSort()" mat-menu-item>
+      Show users in alphabetical order
+    </button>
+  </mat-menu>
+  <div class="search">
+    <mat-form-field>
+      <mat-label>Search user</mat-label>
+      <input
+        #input
+        (keyup)="handleInput(input.value.trim())"
+        placeholder="Search users"
+        matInput
+        type="text"
+      />
+    </mat-form-field>
+  </div>
+</mat-toolbar>

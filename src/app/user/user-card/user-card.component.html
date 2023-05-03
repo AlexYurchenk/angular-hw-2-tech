@@ -1,6 +1,7 @@
 <mat-card class="card">
   <mat-card-header>
     <mat-checkbox
+      [checked]="isChecked"
       (change)="handleChecked(user.id)"
       class="checkbox"
       color="primary"

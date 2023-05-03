@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { IUser } from '../models/i-user';
+import { AppState } from 'src/app/store/reducers/user';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { addUser } from 'src/app/store/actions/users';
 
 @Component({
   selector: 'app-user-form',
@@ -8,6 +13,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class UserFormComponent implements OnInit {
   form!: FormGroup;
+  user$!: Observable<IUser>;
+
+  constructor(private store: Store<AppState>) {}
   ngOnInit(): void {
     this.form = new FormGroup({
       firstName: new FormControl('', [
@@ -28,8 +36,13 @@ export class UserFormComponent implements OnInit {
     });
   }
   handleSubmit() {
-    console.log('form', this.form);
-    console.log(this.form.controls['email']);
+    const newUser: Omit<IUser, 'id'> = {
+      ...this.form.value,
+      createdAt: new Date().toISOString(),
+      image:
+        'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/971.jpg',
+    };
+    this.store.dispatch(addUser(newUser));
   }
   getErrorMessage() {
     if (this.form.hasError('required')) {

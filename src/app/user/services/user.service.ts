@@ -15,17 +15,15 @@ export class UserService {
       .pipe(catchError(this.handleError));
   }
 
-  deleteUsers(ids: string[]) {
-    return ids.map((id) => {
-      return this.http
-        .delete(`${this.usersUrl}/${id}`)
-        .pipe(catchError((error) => error.json()));
-    });
+  deleteUser(id: string) {
+    return this.http
+      .delete(`${this.usersUrl}/${id}`)
+      .pipe(catchError(catchError(this.handleError)));
   }
   crateUser(user: Omit<IUser, 'id'>) {
     return this.http
       .post(this.usersUrl, user)
-      .pipe(catchError((error) => error.json()));
+      .pipe(catchError(this.handleError));
   }
   private handleError(err: HttpErrorResponse) {
     let errorMessage = '';
