@@ -8,7 +8,7 @@
       formControlName="firstName"
       required
     />
-    <mat-error *ngIf="form.controls['firstName'].errors">{{
+    <mat-error *ngIf="form.controls['firstName'].errors && form.dirty">{{
       getFirsNameErrorMessage()
     }}</mat-error>
   </mat-form-field>
@@ -21,7 +21,7 @@
       formControlName="lastName"
       required
     />
-    <mat-error *ngIf="form.controls['lastName'].errors">{{
+    <mat-error *ngIf="form.controls['lastName'].errors && form.dirty">{{
       getLastNameErrorMessage()
     }}</mat-error>
   </mat-form-field>
@@ -34,7 +34,7 @@
       formControlName="email"
       required
     />
-    <mat-error *ngIf="form.controls['email'].errors">{{
+    <mat-error *ngIf="form.controls['email'].errors && form.dirty">{{
       getEmailErrorMessage()
     }}</mat-error>
   </mat-form-field>
@@ -47,7 +47,7 @@
       formControlName="phone"
       required
     />
-    <mat-error *ngIf="form.controls['phone'].errors">{{
+    <mat-error *ngIf="form.controls['phone'].errors && form.dirty">{{
       getPhoneErrorMessage()
     }}</mat-error>
   </mat-form-field>

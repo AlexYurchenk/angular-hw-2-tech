@@ -110,6 +110,7 @@ export const reducers = createReducer(
     ...state,
     isLoading: false,
     users: state.users.filter((u) => u.id !== action.id),
+    selectedUsers: state.selectedUsers.filter((id) => id !== action.id),
   })),
   on(deleteUserFailure, (state, action) => ({
     ...state,

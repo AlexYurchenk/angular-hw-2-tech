@@ -43,7 +43,10 @@ export class UserFormComponent implements OnInit {
         'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/971.jpg',
     };
     this.store.dispatch(addUser(newUser));
+    this.form.reset();
+    console.log(this.form);
   }
+
   getErrorMessage() {
     if (this.form.hasError('required')) {
       return 'You must enter a value';

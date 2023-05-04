@@ -13,6 +13,7 @@ import {
   Subscription,
   debounceTime,
   distinctUntilChanged,
+  firstValueFrom,
 } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/reducers/user';
@@ -70,10 +71,8 @@ export class UserToolbarComponent implements OnInit, OnDestroy {
   handleInput(q: string) {
     this.searchSubject.next(q.toLocaleLowerCase());
   }
-  handleDelete() {
-    console.log(1);
-    this.selectedUsers$.subscribe((ids) => {
-      ids.forEach((id) => this.store.dispatch(deleteUser({ id })));
-    });
+  async handleDelete() {
+    const users = await firstValueFrom(this.selectedUsers$);
+    users.forEach((u) => this.store.dispatch(deleteUser({ id: u })));
   }
 }
