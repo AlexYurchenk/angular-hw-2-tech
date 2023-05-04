@@ -1,11 +1,9 @@
 import {
   Component,
   EventEmitter,
-  OnChanges,
   OnDestroy,
   OnInit,
   Output,
-  SimpleChanges,
 } from '@angular/core';
 import {
   Observable,

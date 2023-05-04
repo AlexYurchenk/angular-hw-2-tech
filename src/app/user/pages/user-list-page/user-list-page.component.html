@@ -1,2 +1,7 @@
-<app-user-toolbar (onSearch)="handleSearch($event)"></app-user-toolbar>
-<app-user-list [query]="query"></app-user-list>
+<div *ngIf="(error$ | async) ? false : true; else error">
+  <app-user-toolbar (onSearch)="handleSearch($event)"></app-user-toolbar>
+  <app-user-list [query]="query"></app-user-list>
+</div>
+<ng-template #error>
+  <p class="title">{{ error$ | async }} ,Please reload your page</p>
+</ng-template>

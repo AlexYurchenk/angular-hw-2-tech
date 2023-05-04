@@ -59,12 +59,8 @@ export class UsersEffects {
       ofType(deleteUser),
       mergeMap(({ id }) =>
         this.userService.deleteUser(id).pipe(
-          map(
-            () => deleteUserSuccess({ id }),
-            catchError((error) =>
-              of(deleteUserFailure({ error: error.message }))
-            )
-          )
+          map((_) => deleteUserSuccess({ id })),
+          catchError((error) => of(deleteUserFailure({ error: error.message })))
         )
       )
     )
